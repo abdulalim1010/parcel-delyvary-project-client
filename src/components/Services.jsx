@@ -14,7 +14,7 @@ const Services = () => {
         </p>
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div  data-aos="zoom-in-down" className="grid gap-6  sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service, idx) => (
           <ServiceCard key={idx} service={service} />
         ))}
