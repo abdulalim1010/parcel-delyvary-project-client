@@ -1,6 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import UseAuth from '../../hooks/UseAuth';
+import { Link } from 'react-router';
+import SocialLogin from './socialLogin/SocialLogin';
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
@@ -46,8 +48,10 @@ const Register = () => {
             <a className="link link-hover">Forgot password?</a>
           </div>
 
-          <button className="btn btn-neutral w-full mt-4">Register</button>
-        </fieldset>
+          <button className="btn btn-neutral mt-4">Register</button>
+          </fieldset>
+          <p className='text-xl font-semibold mt-3.5 gap-2'>Already Have an account?<Link className='btn bg-[#CAEB66]' to='/login'>Login</Link></p>
+          <SocialLogin></SocialLogin>
         </form>
       </div>
     </div>
