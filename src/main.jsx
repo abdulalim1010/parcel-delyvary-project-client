@@ -11,6 +11,7 @@ import {
 import { router } from './router/Router.jsx';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import AuthProvider from './context/authContext/AuthProvider.jsx';
 // ..
 AOS.init();
 
@@ -19,7 +20,8 @@ AOS.init();
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <div className='font-urbanist max-w-7xl mx-auto'>
-    <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} /></AuthProvider>
    </div>
   </StrictMode>,
 )
