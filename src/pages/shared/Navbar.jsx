@@ -10,7 +10,7 @@ const Navbar = () => {
   const navItem = <>
     
     <li ><NavLink to={"/"}>Home</NavLink></li>
-    <li><NavLink to={"/coverage"}>Coverage</NavLink></li>
+    <li><NavLink to={"/covarage"}>Coverage</NavLink></li>
     <li><NavLink to={"/about Us"}>About Us</NavLink></li>
     <li><NavLink to={"/pricinge"}>Pricing</NavLink></li>
     <li><NavLink to={"/beaRider"}>Be a Rider</NavLink></li>

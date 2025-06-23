@@ -1,6 +1,6 @@
 // BenefitSection.jsx
 import React from "react";
-import  benefitData  from "../../public/three.json";
+import binFitData from '../../src/three.json'
 
 const BenefitSection = () => {
   return (
@@ -9,7 +9,7 @@ const BenefitSection = () => {
         Why Choose Us
       </h2>
       <div className="space-y-8">
-      {benefitData.map(({ id, title, description, image }) => (
+      {binFitData.map(({ id, title, description, image }) => (
   <div
     key={id}
     className="card card-side bg-base-100 shadow-md flex flex-col md:flex-row items-center p-4"

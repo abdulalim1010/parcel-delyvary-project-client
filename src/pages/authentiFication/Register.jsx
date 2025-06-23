@@ -50,7 +50,7 @@ const Register = () => {
 
           <button className="btn btn-neutral mt-4">Register</button>
           </fieldset>
-          <p className='text-xl font-semibold mt-3.5 gap-2'>Already Have an account?<Link className='btn bg-[#CAEB66]' to='/login'>Login</Link></p>
+          <p className='text-xl font-semibold mt-3.5 gap-2'>Already Have an account?<Link className="btn btn-link" to='/login'>Login</Link></p>
           <SocialLogin></SocialLogin>
         </form>
       </div>

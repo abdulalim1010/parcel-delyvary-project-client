@@ -11,6 +11,9 @@ import Login from "../pages/authentiFication/Login";
 import AuthLayout from "../pages/AuthLayout";
 import Register from "../pages/authentiFication/Register";
 
+import Coverage from "../pages/covarage/Coverage";
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +25,8 @@ export const router = createBrowserRouter([
       }
       ,
       {
+        path: '/covarage',
+        Component:Coverage
         
       }
    ]

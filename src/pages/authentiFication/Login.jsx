@@ -47,7 +47,7 @@ const Login = () => {
 
               <button className="btn btn-neutral mt-4 w-full">Login</button>
             </fieldset>
-            <p className='text-xl font-semibold mt-3.5 gap-2'>You are the new in webside <Link className='btn bg-[#CAEB66]' to='/register'>Register</Link></p>
+            <p className='text-xl font-semibold mt-3.5 gap-2'>You are the new in webside <Link className="btn btn-link" to='/register'>Register</Link></p>
             <SocialLogin/>
           </form>
         </div>
