@@ -12,6 +12,9 @@ import AuthLayout from "../pages/AuthLayout";
 import Register from "../pages/authentiFication/Register";
 
 import Coverage from "../pages/covarage/Coverage";
+import PrivateRoute from "../routs/PrivateRoute";
+import SendParcel from "../pages/sendParcel/ParcelForm";
+import ParcelForm from "../pages/sendParcel/ParcelForm";
 
 
 export const router = createBrowserRouter([
@@ -28,6 +31,10 @@ export const router = createBrowserRouter([
         path: '/covarage',
         Component:Coverage
         
+      },
+      {
+        path: 'sendParcel',
+        element:<PrivateRoute><ParcelForm></ParcelForm></PrivateRoute>
       }
    ]
   },
