@@ -36,7 +36,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end gap-3">
-    <button className='btn btn-primary text-black'><Link>Login</Link></button>
+    <button className='btn btn-primary text-black'><Link to='/login'>Login</Link></button>
         <a className="btn bg-[#CAEB66]">Be RIder</a>
         
   </div>
