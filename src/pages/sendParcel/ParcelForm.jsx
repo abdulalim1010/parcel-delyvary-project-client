@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import UseAuth from '../../hooks/UseAuth';
+import UseAxiuosSequre from '../../hooks/UseAxiuosSequre';
 
 // Region to District mapping
 const regionDistrictMap = {
@@ -15,8 +16,17 @@ const regionDistrictMap = {
   Mymensingh: ["Mymensingh", "Netrokona", "Sherpur"]
 };
 
+// 🔧 Tracking ID generator
+const generateTrackingId = () => {
+  const timestamp = Date.now().toString(36);
+  const randomPart = Math.random().toString(36).substring(2, 6).toUpperCase();
+  return `TRK-${timestamp}-${randomPart}`;
+};
+
 const ParcelForm = () => {
   const { user } = UseAuth();
+  const axiousSecure=UseAxiuosSequre()
+
   const creatorEmail = user?.email || 'unknown';
 
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
@@ -47,7 +57,8 @@ const ParcelForm = () => {
       }
     }
 
-    // SweetAlert breakdown confirmation
+    const trackingId = generateTrackingId();
+
     Swal.fire({
       title: 'Confirm Parcel Delivery',
       icon: 'info',
@@ -76,6 +87,7 @@ const ParcelForm = () => {
             </ul>
             <hr style="margin: 8px 0;" />
             <p style="font-size: 18px"><strong>💰 Total Cost: <span style="color:green">৳${cost}</span></strong></p>
+            <p style="font-size: 16px"><strong>📦 Tracking ID:</strong> <code>${trackingId}</code></p>
           </div>
         </div>
       `,
@@ -92,14 +104,25 @@ const ParcelForm = () => {
         const finalData = {
           ...data,
           delivery_cost: cost,
+          tracking_id: trackingId,
           creation_date: new Date().toISOString(),
           creator_email: creatorEmail,
-          sender_email: data.sender_contact + '@placeholder.com' // If sender uses email, replace logic
+          sender_email: data.sender_contact + '@placeholder.com'
         };
 
         console.log("Parcel Data Saved:", finalData);
-        Swal.fire('Saved!', 'Your parcel has been submitted.', 'success');
-        reset();
+
+
+        axiousSecure.post('/parcels', finalData)
+          .then(res => {
+          console.log(res.data)
+        })
+        // Swal.fire({
+        //   title: 'Saved!',
+        //   html: `Your parcel has been submitted.<br/><strong>Tracking ID:</strong> <code>${trackingId}</code>`,
+        //   icon: 'success'
+        // });
+        // reset();
       }
     });
   };
