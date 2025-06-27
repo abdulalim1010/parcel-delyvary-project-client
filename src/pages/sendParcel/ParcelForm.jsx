@@ -39,6 +39,8 @@ const ParcelForm = () => {
   const receiverCenter = watch("receiver_service_center");
 
   const onSubmit = (data) => {
+    console.log('User object:', user);
+  console.log('User ////////////// email:', user?.email);
     const isSameCity = senderCenter === receiverCenter;
     const parcelType = type;
     let cost = 0;
