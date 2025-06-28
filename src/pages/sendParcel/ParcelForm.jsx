@@ -25,10 +25,9 @@ const generateTrackingId = () => {
 
 const ParcelForm = () => {
   const { user } = UseAuth();
-  const axiousSecure=UseAxiuosSequre()
+  const axiousSecure = UseAxiuosSequre();
 
   const creatorEmail = user?.email || 'unknown';
-
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
   const [senderRegion, setSenderRegion] = useState("");
   const [receiverRegion, setReceiverRegion] = useState("");
@@ -39,8 +38,6 @@ const ParcelForm = () => {
   const receiverCenter = watch("receiver_service_center");
 
   const onSubmit = (data) => {
-    console.log('User object:', user);
-  console.log('User ////////////// email:', user?.email);
     const isSameCity = senderCenter === receiverCenter;
     const parcelType = type;
     let cost = 0;
@@ -112,19 +109,23 @@ const ParcelForm = () => {
           sender_email: data.sender_contact + '@placeholder.com'
         };
 
-        console.log("Parcel Data Saved:", finalData);
-
-
         axiousSecure.post('/parcels', finalData)
           .then(res => {
-          console.log(res.data)
-        })
-        // Swal.fire({
-        //   title: 'Saved!',
-        //   html: `Your parcel has been submitted.<br/><strong>Tracking ID:</strong> <code>${trackingId}</code>`,
-        //   icon: 'success'
-        // });
-        // reset();
+            if (res.data?.insertedId || res.status === 201) {
+              Swal.fire({
+                title: '✅ Parcel Submitted!',
+                html: `Your parcel has been successfully submitted.<br/><strong>Tracking ID:</strong> <code>${trackingId}</code>`,
+                icon: 'success'
+              });
+              reset();
+            } else {
+              Swal.fire('❌ Error', 'Something went wrong while submitting the parcel.', 'error');
+            }
+          })
+          .catch(err => {
+            console.error('Parcel submit error:', err);
+            Swal.fire('❌ Error', err.message || 'Submission failed', 'error');
+          });
       }
     });
   };
@@ -158,7 +159,7 @@ const ParcelForm = () => {
                 <label className="label">Weight (kg)</label>
                 <input type="number" step="0.01" className="input input-bordered w-full"
                   {...register("weight", {
-                    required: true,
+                    required: type === "non-document",
                     min: 0.1,
                     valueAsNumber: true
                   })}
