@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import SocialLogin from './socialLogin/SocialLogin';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import UseAxious from '../../hooks/UseAxious';
 
 const Register = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -13,10 +14,22 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/';
+  const useAxiousInstance=UseAxious()
 
   const onSubmit = data => {
     createUser(data.email, data.password)
-      .then(result => {
+      .then(async(result) => {
+        console.log(result.user)
+        const userInfo = {
+          email: data.email,
+          role: 'user',//default
+          created_at: new Date().toISOString(),
+          last_log_in:new Date().toDateString()
+        }
+        const userRes = await useAxiousInstance.post('users', userInfo)
+        
+console.log(userRes)
+        
         const userProfile = {
           displayName: data.name,
           photoURL: profile,

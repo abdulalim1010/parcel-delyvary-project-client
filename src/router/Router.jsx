@@ -17,6 +17,7 @@ import SendParcel from "../pages/sendParcel/ParcelForm";
 import ParcelForm from "../pages/sendParcel/ParcelForm";
 import DashboardLayout from "../DashboardLayout";
 import Myparcel from "../pages/dahsboard/myparcel/Myparcel";
+import BeARider from "../pages/BeARider";
 
 
 export const router = createBrowserRouter([
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: 'sendParcel',
         element:<PrivateRoute><ParcelForm></ParcelForm></PrivateRoute>
+      }
+      , {
+        path: '/beArider',
+        element:<PrivateRoute><BeARider></BeARider></PrivateRoute>
       }
    ]
   },

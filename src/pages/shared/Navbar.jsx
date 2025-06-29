@@ -48,8 +48,8 @@ const Navbar = () => {
   <div className="navbar-end gap-3">
         {
           user? <button onClick={handleloguout} className='btn primary text-black'>logout</button>:    <button className='btn btn-primary text-black'><Link to='/login'>Login</Link></button>
-}
-        <a className="btn bg-[#CAEB66]">Be RIder</a>
+        }
+       <li className='bg-green-200 text-white p-2.5 rounded-xl' ><NavLink to={"/beArider"}>Be Arider</NavLink></li>
         
   </div>
 </div>
